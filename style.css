@@ -7,7 +7,7 @@ body {
 }
 
 .container {
-  padding: 50px;
+  padding: 40px 20px;
 }
 
 h1, h2 {
@@ -15,7 +15,8 @@ h1, h2 {
 }
 
 p {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  line-height: 1.5;
 }
 
 .btn {
@@ -27,6 +28,7 @@ p {
   border-radius: 25px;
   text-decoration: none;
   transition: 0.3s;
+  font-size: 1rem;
 }
 
 .btn:hover {
@@ -41,9 +43,61 @@ p {
 }
 
 .gallery img {
-  width: 200px;
+  width: 220px;
+  max-width: 100%;
   height: auto;
   border-radius: 15px;
   box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
   transition: transform 0.3s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* ========================= */
+/* 📱 Mobile Responsiveness  */
+/* ========================= */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.6rem;
+  }
+  h2 {
+    font-size: 1.3rem;
+  }
+  p {
+    font-size: 1rem;
+  }
+  .btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  .gallery {
+    gap: 10px;
+  }
+  .gallery img {
+    width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 25px 15px;
+  }
+  h1 {
+    font-size: 1.3rem;
+  }
+  p {
+    font-size: 0.9rem;
+  }
+  .btn {
+    width: 100%;
+    max-width: 250px;
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+  .gallery img {
+    width: 100%;
+    max-width: 250px;
+  }
 }
