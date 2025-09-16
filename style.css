@@ -21,18 +21,19 @@ p {
 
 .btn {
   display: inline-block;
-  margin-top: 20px;
-  padding: 12px 25px;
-  background: #ff477e;
+  padding: 18px 36px;   /* bigger size */
+  font-size: 20px;      /* bigger text */
+  font-weight: bold;
+  border-radius: 12px;
+  background: #ff4d6d;
   color: white;
-  border-radius: 25px;
   text-decoration: none;
-  transition: 0.3s;
-  font-size: 1rem;
+  transition: transform 0.2s ease, background 0.2s ease;
 }
 
 .btn:hover {
-  background: #ff1744;
+  background: #ff1f55;
+  transform: scale(1.1);
 }
 
 .gallery {
