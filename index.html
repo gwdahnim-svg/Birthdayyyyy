@@ -4,16 +4,82 @@
   <meta charset="UTF-8">
   <title>HAPPY BIRTHDAYYY MU MOOMOR MANUHJONIII MUUUUUU</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+    #hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+    .container {
+      text-align: center;
+      color: white;
+      position: relative;
+      top: 25%;
+      transform: translateY(-25%);
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: #ff0077;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+    #start-btn {
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: #ff0077;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
+  <canvas id="hearts"></canvas>
+
   <div class="container">
     <h1>MU BABYGIRL JONIIII</h1>
-    <p>Tumak bohut besi bhal pau tumi sirf mu hua onli mu hodair kroneee❤️❤️
+    <p>
+      Tumak bohut besi bhal pau tumi sirf mu hua onli mu hodair kroneee❤️❤️
       <br>Tumi he mur jibon
       <br>Tumi he mur prithibi
       <br>I love you soo muchhhhhh bohut besikeeeeee aab niche see aru click akhy
     </p>
     <a href="page2.html" class="btn">Eyat touch kiuth ke akhy😘</a>
+    <br>
+    <button id="start-btn">🎵 Start Music</button>
   </div>
+
+ <audio id="bg-music" src="music.mp3" loop></audio>
+
+<script>
+  const music = document.getElementById("bg-music");
+  const btn = document.getElementById("start-btn");
+
+  btn.addEventListener("click", () => {
+    music.volume = 1.0;
+    music.muted = false;
+    music.play().then(() => {
+      btn.style.display = "none"; // hide button once music starts
+    }).catch(err => {
+      console.log("Music play failed:", err);
+      alert("Music could not be played. Check the file!");
+    });
+  });
+</script>
+
 </body>
 </html>
