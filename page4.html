@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Marriage Certificate 💍</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
+    }
+
+    .certificate {
+      background: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      width: 80%;
+      max-width: 600px;
+      box-shadow: 0 0 20px rgba(255, 0, 150, 0.3);
+      animation: fadeIn 2s ease-in-out;
+      z-index: 2;
+      position: relative;
+    }
+
+    .certificate h1 {
+      font-size: 2rem;
+      color: #ff006e;
+      margin-bottom: 10px;
+      animation: glow 2s infinite alternate;
+    }
+
+    .certificate h2 {
+      color: #d63384;
+      font-size: 1.5rem;
+      margin: 15px 0;
+    }
+
+    .certificate p {
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .certificate h3 {
+      margin-top: 20px;
+      font-size: 1.3rem;
+      color: #ff4d6d;
+    }
+
+    .download-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #ff4d6d;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+
+    .download-btn:hover {
+      background: #ff006e;
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ff006e; }
+      to { text-shadow: 0 0 25px #ff4d6d; }
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      bottom: -50px;
+      width: 25px;
+      height: 25px;
+      background: red;
+      transform: rotate(45deg);
+      animation: floatUp 6s linear infinite;
+      opacity: 0.7;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: red;
+    }
+
+    .heart::before {
+      top: -12px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -12px;
+      top: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(45deg) scale(0.8);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(45deg) scale(1.5);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="certificate" id="certificate">
+    <h1>💍 Certificate of Love 💍</h1>
+    <p>This is to certify that</p>
+    <h2>Minhad Hussain ❤️ Parishmita Baruah</h2>
+    <p>Have agreed to a lifetime of love, happiness, and togetherness.</p>
+    <p>On this special day of manuhjonir kiuthh birthday 🎂</p>
+    <br>
+    <p>Signed with endless love,</p>
+    <p><strong>Minhad Hussain</strong></p>
+    <p><strong>Parishmita Baruah</strong></p>
+    <br>
+    <h3>💖 Forever Together 💖</h3>
+    <button class="download-btn" onclick="downloadCertificate()">📥 Download Certificate</button>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    // floating hearts
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+    setInterval(createHeart, 500);
+
+    // download as PDF
+    async function downloadCertificate() {
+      const { jsPDF } = window.jspdf;
+      const element = document.getElementById("certificate");
+      const canvas = await html2canvas(element);
+      const imgData = canvas.toDataURL("image/png");
+
+      const pdf = new jsPDF("p", "mm", "a4");
+      const imgProps = pdf.getImageProperties(imgData);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+      pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+      pdf.save("Marriage_Certificate.pdf");
+    }
+  </script>
+</body>
+</html>
